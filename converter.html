@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body>
+  <div class="temperature-converter">
     <h2>Temperature Converter</h2>
     <p>
         <input type = "number" id = 'input1' value = 0 onkeyup ="updateResult('input1', 'input2')">
@@ -18,6 +19,7 @@
             <option value="K">Kelvin</option>
         </select>
     </p>
+  </div>
 </body>
 </html>
 
@@ -55,3 +57,18 @@
     }
   }
 </script>
+<style type="text/css">
+  p, h2{
+    text-align: center;
+  }
+  .temperature-converter{
+    margin-top: 23%;
+  }
+  html { 
+    background: url(background.png) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+  }
+</style>
