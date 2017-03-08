@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <h2>Temperature Converter</h2>
+    <p>
+        <input type = "number" id = 'input1' value = 0 onkeyup ="updateResult('input1', 'input2')">
+        <select id="select1" onChange="updateResult('input1', 'input2')">
+            <option value="C">Celsius</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+        </select>
+    </p>
+    <p>
+        <input type = "number" id = 'input2' value = 0 onkeyup ="updateResult('input2', 'input1')" >
+        <select id="select2" onChange="updateResult('input1', 'input2')">
+            <option value="C">Celsius</option>
+            <option value="F">Fahrenheit</option>
+            <option value="K">Kelvin</option>
+        </select>
+    </p>
+</body>
+</html>
+
+<script>
+  function updateResult(sourceId, destinationId){
+    var from = document.getElementById("select1").value;
+    var to = document.getElementById("select2").value;
+    if(sourceId == 'input2'){
+      to = [from, from = to][0];
+    }
+    var sourceValue = document.getElementById(sourceId).value;
+    if(!sourceValue){
+      document.getElementById(destinationId).value = '';
+      return
+    }
+    var valueToConvert = parseFloat(sourceValue);
+    var result = convertTemperature(from, to, valueToConvert);
+    document.getElementById(destinationId).value = result;
+  }
+	function convertTemperature(from, to, value){
+    if(from == to){
+      return value;
+    }
+    else if(to == 'K'){
+      return convertTemperature(from, 'C', value) +  273.15;
+    }
+    else if(from == 'K'){
+      return convertTemperature('C', to, value-273.15);
+    }
+    else if(from == 'F'){
+      return (value - 32) * 5/9;
+    }
+    else if(from == 'C'){
+      return (value * 9/5) + 32;
+    }
+  }
+</script>
